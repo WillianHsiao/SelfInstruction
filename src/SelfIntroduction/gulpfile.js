@@ -5,7 +5,8 @@ var gulp = require("gulp"),
     rimraf = require("rimraf"),
     concat = require("gulp-concat"),
     cssmin = require("gulp-cssmin"),
-    uglify = require("gulp-uglify");
+    uglify = require("gulp-uglify"),
+    ts = require("gulp-typescript");
 
 var paths = {
     webroot: "./wwwroot/"
@@ -43,3 +44,12 @@ gulp.task("min:css", function () {
 });
 
 gulp.task("min", ["min:js", "min:css"]);
+
+gulp.task('compileTypescript', function () {
+    return gulp.src('scripts/**/*.ts')
+		.pipe(ts({
+		    noImplicitAny: true,
+		    out: 'output.js'
+		}))
+		.pipe(gulp.dest('built/local'));
+});

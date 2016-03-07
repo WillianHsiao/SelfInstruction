@@ -104,6 +104,10 @@ namespace SelfIntroduction
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(
+                    name: "BackEndAreaRoute",
+                    template: "{area}/{controller}/{action}",
+                    defaults: new { area = "BackEnd", controller = "Home", action = "Index" });
             });
         }
 
